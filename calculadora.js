@@ -27,6 +27,13 @@ clean.setAttribute('type','button');
 clean.setAttribute('class','col');
 clean.addEventListener("click",clear);
 
+var euqal = document.createElement("input");
+euqal.setAttribute("id", "equals");
+euqal.setAttribute("value", "=");
+euqal.setAttribute("type", "button");
+euqal.setAttribute("class", "col p-3");
+euqal.setAttribute("onclick", "calc()");
+
 var visor = document.createElement('input');
 visor.setAttribute('id','result');
 visor.setAttribute('type','text');
@@ -43,7 +50,7 @@ l1.setAttribute('class','row');
 l1.appendChild(createButton(7));
 l1.appendChild(createButton(8));
 l1.appendChild(createButton(9));
-l1.appendChild(createButton('x'));
+l1.appendChild(createButton('*'));
 
 var l2 = document.createElement('div');
 l2.setAttribute('class','row');
@@ -63,7 +70,7 @@ var l4 = document.createElement('div');
 l4.setAttribute('class','row');
 l4.appendChild(createButton(0));
 l4.appendChild(createButton('/'));
-l4.appendChild(createButton('='));
+l4.appendChild(euqal);
 l4.appendChild(clean);
 
 var divc = document.getElementById('container');
@@ -74,6 +81,8 @@ divc.appendChild(l2);
 divc.appendChild(l3);
 divc.appendChild(l4);
 
+let result = document.getElementById("result");
+
 
 function input(v){
     var VI = visor.value;
@@ -81,6 +90,14 @@ function input(v){
 }
 
 function clear(){
-    console.log('reste');
     visor.value='';
+}
+
+function calc() {
+    if (result.value != "") {
+        let result2 = result.value;
+        result.value = eval(result2)
+    } else {
+        alert("Erro, altere os valores!")
+    }
 }
